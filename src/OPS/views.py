@@ -1,5 +1,3 @@
-from cgitb import html
-import re
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -12,6 +10,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            messages.success(request,'Account created successfully')
             username = form.cleaned_data.get('username')
             login(request,user)
             return redirect("home")
@@ -19,8 +18,7 @@ def register(request):
     #         for msg in form.error_messages:
     #             print(form.error_messages[msg])
     #             return render(request,'register.html',context={"form":form})
-    #         #messages.success(request,'Account created successfully')
-    # form = UserCreationForm()
+    form = UserCreationForm()
     context = {'form':form}
     return render(request,'register.html', context)
 
