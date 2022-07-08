@@ -1,0 +1,21 @@
+{% extends 'Operation2/index.html'%}
+
+{% block title %} Inscription {%endblock%}
+
+{% block content%}
+
+<div id="container">
+  
+  <form method="post" >
+
+    {% csrf_token %}
+    {{form.as_p }}
+    <!-- <input type="submit" id='submit' value='Enregistrer' > -->
+    <button class="btn" style="background-color:yellowgreen" id ='submit' type="submit">Register</button>
+    <p> Si vous avez deja un compte connectez-vous! <a href=""> login</a></p>
+ </form>
+ {% for message in messages%}
+    <p> {{ message }} </p>
+    {%endfor%}
+</div>
+{%endblock%}
